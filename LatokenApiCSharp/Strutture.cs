@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 public class Strutture
 {
+    // Some constant used in ApiLatoken
     public const string ask = "ASK";
     public const string bid = "BID";
     public const string baseUrl = "https://api.latoken.com";
@@ -15,6 +16,7 @@ public class Strutture
     {
         NumberDecimalSeparator = "."
     };
+    // Structures used to get the json response from the server side
     public class Order
     {
         public class Returneds

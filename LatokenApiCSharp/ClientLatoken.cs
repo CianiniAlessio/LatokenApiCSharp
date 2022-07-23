@@ -38,7 +38,8 @@ public class ClientLatoken : Strutture
 
 	}
 	/// <summary>
-	/// Function in which I pass a Response for a submitted order and it print the results and the name of the client that sent the order
+	/// Function in which to pass a OrderSubmitted.Response and it print the results of this response 
+	/// and the name of the client that sent the order
 	/// </summary>
 	/// <param name="response"></param>
 	/// <param name="type"></param>
@@ -90,7 +91,8 @@ public class ClientLatoken : Strutture
 
 	}
 	/// <summary>
-	/// Get the all the levels of the order book, if you pass a tickercoin and quotecurrency it will override the ones of the client. A client is needed to use this function
+	/// Get the all the levels of the order book, if pass a tickercoin and quotecurrency it will override the ones of the client.
+	/// A client is needed to use this function
 	/// </summary>
 	/// <param name="tickerCoin"></param>
 	/// <param name="quoteCurrency"></param>
