@@ -19,6 +19,10 @@ public class ClientLatoken : Strutture
 	private List<OrderSubmitted.Response> m_OrderResponsesLimitBuy;
 	private List<OrderSubmitted.Response> m_OrderResponsesMarketBuy; 
 
+
+	/// <summary>
+	/// Create you client that will trade the coin that you pass
+	/// </summary>
 	public ClientLatoken(string apiKey, string apiSecret,string TickerCoin,string idCoin,string quantityLimitOrder, string holderAccount)
     {
 		this.apiKey = apiKey;	
@@ -33,11 +37,20 @@ public class ClientLatoken : Strutture
 		this.m_NameAccount = holderAccount;
 
 	}
+	/// <summary>
+	/// Function in which I pass a Response for a submitted order and it print the results and the name of the client that sent the order
+	/// </summary>
+	/// <param name="response"></param>
+	/// <param name="type"></param>
 	private void LoggerResponseSelfTrade(OrderSubmitted.Response response, string type)
     {
 		Console.WriteLine($"{m_NameAccount}---ORDINE {type.ToUpper()}: [MESSAGE: {response.message}. ERRORS 1: {response.errors}, " +
 			$"ERRORS 2: {response.error}, STATUS: {response.status} ]\n");
 	}
+	/// <summary>
+	/// Get all the balances of your account
+	/// </summary>
+	/// <returns></returns>
 	public List<BalancesResponse> getBalances()
     {
 			
@@ -76,6 +89,12 @@ public class ClientLatoken : Strutture
 		}
 
 	}
+	/// <summary>
+	/// Get the all the levels of the order book, if you pass a tickercoin and quotecurrency it will override the ones of the client. A client is needed to use this function
+	/// </summary>
+	/// <param name="tickerCoin"></param>
+	/// <param name="quoteCurrency"></param>
+	/// <returns></returns>
 	public OrderBook.Response getBook(string? tickerCoin, string? quoteCurrency )
     {
 		tickerCoin = (tickerCoin == null) ?  m_tickerCoin: tickerCoin;
@@ -120,6 +139,10 @@ public class ClientLatoken : Strutture
 
 
 	}
+	/// <summary>
+	/// Return first bid and first ask data of the orderbook
+	/// </summary>
+	/// <returns></returns>
 	public Dictionary<string,double> FirstLevelOrderBook()
     {
 		Dictionary<string,double> result = new Dictionary<string, double>();
@@ -129,6 +152,13 @@ public class ClientLatoken : Strutture
 		return result;
 
 	}
+	/// <summary>
+	/// Send a limit order
+	/// </summary>
+	/// <param name="side"></param>
+	/// <param name="type"></param>
+	/// <param name="price"></param>
+	/// <returns></returns>
 	public OrderSubmitted.Response SendOrder(string side, string type, string price)
     {
 		var endpoint = "/v2/auth/order/place";
@@ -185,6 +215,11 @@ public class ClientLatoken : Strutture
 			return orderResponse;
 		}
 	}
+	/// <summary>
+	/// Send a market Order
+	/// </summary>
+	/// <param name="side"></param>
+	/// <returns></returns>
 	public OrderSubmitted.Response SendOrder(string side)
 	{
 		var endpoint = "/v2/auth/order/place";
@@ -239,6 +274,11 @@ public class ClientLatoken : Strutture
 			return orderResponse;
 		}
 	}
+	/// <summary>
+	/// Send Buy limit order with the quantity passed in the client 
+	/// </summary>
+	/// <param name="price"></param>
+	/// <returns></returns>
 	private OrderSubmitted.Response SendBuyOrderLimit(string price)
     {
 		OrderSubmitted.Response response = SendOrder("BUY", "LIMIT", price);
@@ -246,18 +286,33 @@ public class ClientLatoken : Strutture
 		return response;
 
 	}
+	/// <summary>
+	/// Send Sell limit order with the quantity passed in the client 
+	/// </summary>
+	/// <param name="price"></param>
+	/// <returns></returns>
 	private OrderSubmitted.Response SendSellOrderLimit(string price)
 	{ 
 		OrderSubmitted.Response response = SendOrder("SELL", "LIMIT", price);
 		m_OrderResponsesLimitSell.Add(response);
 		return response;
 	}
+	/// <summary>
+	/// Send Buy market order with the quantity passed in the client 
+	/// </summary>
+	/// <param name="price"></param>
+	/// <returns></returns>
 	private OrderSubmitted.Response SendBuyOrderMarket()
 	{
 		OrderSubmitted.Response response = SendOrder("BUY");
 		m_OrderResponsesMarketBuy.Add(response);
 		return response;
 	}
+	/// <summary>
+	/// Send Sell market order with the quantity passed in the client 
+	/// </summary>
+	/// <param name="price"></param>
+	/// <returns></returns>
 	private OrderSubmitted.Response SendSellOrderMarket()
 	{
 		OrderSubmitted.Response response = SendOrder("SELL");
@@ -265,6 +320,10 @@ public class ClientLatoken : Strutture
 		return response;
 		
 	}
+	/// <summary>
+	/// Get all the orders for the account
+	/// </summary>
+	/// <returns></returns>
 	public List<Order.Returneds> GetOrders()
     {
 		var endpoint = "/v2/auth/order";
@@ -305,19 +364,11 @@ public class ClientLatoken : Strutture
 		}
 
 	}
-	public Order.Returneds GetOrdersbyId(string orderId)
-    {
-		List<Order.Returneds> orders = GetOrders();
-		foreach ( var order in orders)
-        {
-			if (order.id == orderId)
-            {
-				return order;
-            }
-        }
-		return null;
-
-	}
+	/// <summary>
+	/// Get all the orders by Id
+	/// </summary>
+	/// <param name="orderId"></param>
+	/// <returns></returns>
 	public Order.SingleOrder GetOrderById(string orderId)
     {
 		var endpoint = "/v2/auth/order/getOrder/";
@@ -359,6 +410,11 @@ public class ClientLatoken : Strutture
 			return singleOrder;
 		}
 	}
+	/// <summary>
+	/// Cancell Order By Id
+	/// </summary>
+	/// <param name="id"></param>
+	/// <returns></returns>
 
 	public CancellOrder.Response CancellOrderById(string id)
     {
