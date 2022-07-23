@@ -24,7 +24,7 @@ public class ClientLatoken : Strutture
 	/// Create you client that will trade the coin that you pass
 	/// </summary>
 	public ClientLatoken(string apiKey, string apiSecret,string TickerCoin,string idCoin,string quantityLimitOrder, string holderAccount)
-    {
+	{
 		this.apiKey = apiKey;	
 		this.apiSecret = apiSecret;	
 		this.m_idCoin = idCoin;	
