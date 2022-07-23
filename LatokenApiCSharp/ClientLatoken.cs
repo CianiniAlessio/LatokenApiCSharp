@@ -16,7 +16,7 @@ public class ClientLatoken : Strutture
 	private string m_NameAccount;
 	private List<OrderSubmitted.Response> m_OrderResponsesLimitSell;
 	private List<OrderSubmitted.Response> m_OrderResponsesMarketSell;
-	private List<OrderSubmitted.Response> m_OrderResponsesLimitBuy;
+	private List<OrderSubmitted.Response> m_OrderResponsesLimitBuy; 
 	private List<OrderSubmitted.Response> m_OrderResponsesMarketBuy; 
 
 
