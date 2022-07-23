@@ -19,8 +19,7 @@ public class ClientLatoken : Strutture
 	private List<OrderSubmitted.Response> m_OrderResponsesLimitBuy;
 	private List<OrderSubmitted.Response> m_OrderResponsesMarketBuy; 
 
-	public ClientLatoken(string apiKey, string apiSecret,string TickerCoin,string idCoin,
-		string quantityLimitOrder, string holderAccount)
+	public ClientLatoken(string apiKey, string apiSecret,string TickerCoin,string idCoin,string quantityLimitOrder, string holderAccount)
     {
 		this.apiKey = apiKey;	
 		this.apiSecret = apiSecret;	
