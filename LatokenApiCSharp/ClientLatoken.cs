@@ -30,9 +30,9 @@ public class ClientLatoken : Strutture
 		this.m_idCoin = idCoin;	
 		this.m_tickerCoin = TickerCoin;	
 		this.m_quantityLimitOrder = quantityLimitOrder;
-        this.m_OrderResponsesLimitSell = new List<OrderSubmitted.Response>();
-        this.m_OrderResponsesMarketSell= new List<OrderSubmitted.Response>();
-        this.m_OrderResponsesLimitBuy= new List<OrderSubmitted.Response>();
+		this.m_OrderResponsesLimitSell = new List<OrderSubmitted.Response>();
+		this.m_OrderResponsesMarketSell= new List<OrderSubmitted.Response>();
+		this.m_OrderResponsesLimitBuy= new List<OrderSubmitted.Response>();
 		this.m_OrderResponsesMarketBuy = new List<OrderSubmitted.Response>();
 		this.m_NameAccount = holderAccount;
 
